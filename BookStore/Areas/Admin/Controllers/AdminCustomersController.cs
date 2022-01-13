@@ -6,28 +6,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BookStore.Models;
-using AspNetCoreHero.ToastNotification.Abstractions;
+using PagedList.Core;
 
 namespace BookStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class AdminRolesController : Controller
+    public class AdminCustomersController : Controller
     {
         private readonly dbBookstoreContext _context;
-        public INotyfService _notifyService { get; }
-        public AdminRolesController(dbBookstoreContext context, INotyfService notyfService)
+
+        public AdminCustomersController(dbBookstoreContext context)
         {
             _context = context;
-            _notifyService = notyfService;
         }
 
-        // GET: Admin/AdminRoles
-        public async Task<IActionResult> Index()
+        // GET: Admin/AdminCustomers
+        public IActionResult Index(int? page)
         {
-            return View(await _context.Roles.ToListAsync());
+            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
+            var pageSize = 20;
+            var lsCustomers = _context.Customers
+                .AsNoTracking()
+                .Include(x=>x.Location)
+                .OrderByDescending(x => x.CreateDate);
+            PagedList<Customer> models = new PagedList<Customer>(lsCustomers, pageNumber, pageSize);
+            ViewBag.CurrentPage = pageNumber;
+            return View(models);
         }
 
-        // GET: Admin/AdminRoles/Details/5
+        // GET: Admin/AdminCustomers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,40 +42,39 @@ namespace BookStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var role = await _context.Roles
-                .FirstOrDefaultAsync(m => m.RoleId == id);
-            if (role == null)
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(m => m.CustomerId == id);
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            return View(role);
+            return View(customer);
         }
 
-        // GET: Admin/AdminRoles/Create
+        // GET: Admin/AdminCustomers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/AdminRoles/Create
+        // POST: Admin/AdminCustomers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RoleId,RoleName,Description")] Role role)
+        public async Task<IActionResult> Create([Bind("CustomerId,FullName,Birthday,Avatar,Address,Email,Phone,LocationId,District,Ward,CreateDate,Password,Salt,LastLogin,Active")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(role);
+                _context.Add(customer);
                 await _context.SaveChangesAsync();
-                _notifyService.Success("Tạo mới thành công");
                 return RedirectToAction(nameof(Index));
             }
-            return View(role);
+            return View(customer);
         }
 
-        // GET: Admin/AdminRoles/Edit/5
+        // GET: Admin/AdminCustomers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,22 +82,22 @@ namespace BookStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var role = await _context.Roles.FindAsync(id);
-            if (role == null)
+            var customer = await _context.Customers.FindAsync(id);
+            if (customer == null)
             {
                 return NotFound();
             }
-            return View(role);
+            return View(customer);
         }
 
-        // POST: Admin/AdminRoles/Edit/5
+        // POST: Admin/AdminCustomers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RoleId,RoleName,Description")] Role role)
+        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,FullName,Birthday,Avatar,Address,Email,Phone,LocationId,District,Ward,CreateDate,Password,Salt,LastLogin,Active")] Customer customer)
         {
-            if (id != role.RoleId)
+            if (id != customer.CustomerId)
             {
                 return NotFound();
             }
@@ -100,16 +106,14 @@ namespace BookStore.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(role);
+                    _context.Update(customer);
                     await _context.SaveChangesAsync();
-                    _notifyService.Success("cập nhật thành công");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RoleExists(role.RoleId))
+                    if (!CustomerExists(customer.CustomerId))
                     {
                         return NotFound();
-                        _notifyService.Success("Có lỗi xảy ra");
                     }
                     else
                     {
@@ -118,10 +122,10 @@ namespace BookStore.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(role);
+            return View(customer);
         }
 
-        // GET: Admin/AdminRoles/Delete/5
+        // GET: Admin/AdminCustomers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,31 +133,30 @@ namespace BookStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var role = await _context.Roles
-                .FirstOrDefaultAsync(m => m.RoleId == id);
-            if (role == null)
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(m => m.CustomerId == id);
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            return View(role);
+            return View(customer);
         }
 
-        // POST: Admin/AdminRoles/Delete/5
+        // POST: Admin/AdminCustomers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var role = await _context.Roles.FindAsync(id);
-            _context.Roles.Remove(role);
+            var customer = await _context.Customers.FindAsync(id);
+            _context.Customers.Remove(customer);
             await _context.SaveChangesAsync();
-            _notifyService.Success("Đã xóa");
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RoleExists(int id)
+        private bool CustomerExists(int id)
         {
-            return _context.Roles.Any(e => e.RoleId == id);
+            return _context.Customers.Any(e => e.CustomerId == id);
         }
     }
 }
