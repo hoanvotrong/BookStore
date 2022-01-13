@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Blog";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
                         <h2 class="breadcrumb-heading">Blog Layout</h2>
                         <ul>
                             <li>
-                                <a href="index.html">Home <i class="pe-7s-angle-right"></i></a>
+                                <a asp-area="" asp-controller="Home" asp-action="Index">Home <i class="pe-7s-angle-right"></i></a>
                             </li>
                             <li>Blog Default</li>
                         </ul>

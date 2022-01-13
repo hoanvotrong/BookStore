@@ -5,13 +5,12 @@
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Harmic - Organic Food HTML Template</title>
+    <title>Book Store</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/favicon.ico" />
-
     <!-- CSS
     ============================================ -->
     <!-- Vendor CSS (Contain Bootstrap, Icon Fonts) -->
@@ -27,6 +26,7 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="~/assets/css/style.css">
+
 </head>
 
 <body>
@@ -36,7 +36,8 @@
         <!-- Begin Main Header Area -->
         @await Html.PartialAsync("_HeaderPartialView.cshtml")
         <!-- Main Header Area End Here -->
-        @RenderBody()
+
+        @RenderBody();
 
         <!-- Begin Footer Area -->
         @await Html.PartialAsync("_FooterPartialView.cshtml")
@@ -70,8 +71,10 @@
 
     <!--Main JS (Common Activation Codes)-->
     <script src="~/assets/js/main.js"></script>
+
     @await Component.InvokeAsync("Notyf")
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 
 </html>

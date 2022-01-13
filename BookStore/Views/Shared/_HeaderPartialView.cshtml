@@ -25,8 +25,8 @@
                                 </ul>
                             </li>
                             <li>
-                                Liên Hệ Nhanh
-                                <a href="tel://1234567">1234567</a>
+                                Call Us
+                                <a href="tel://0943058578">0943.058.578</a>
                             </li>
                         </ul>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="header-search-area d-none d-lg-block">
                             <form action="#" class="header-searchbox">
                                 <select class="nice-select select-search-category wide">
-                                    <option value="all">Danh mục</option>
+                                    <option value="all">All Category</option>
                                     <option value="product-item">Product Item</option>
                                     <option value="product-item-2">Product Item 02</option>
                                     <option value="product-item-3">Product Item 03</option>
@@ -68,8 +68,8 @@
                                         <i class="pe-7s-users"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingButton">
-                                        <li><a class="dropdown-item" href="my-account.html">Tài Khoản</a></li>
-                                        <li><a class="dropdown-item" href="login-register.html">Đăng Nhập | Đăng kí</a></li>
+                                        <li><a class="dropdown-item" href="my-account.html">My account</a></li>
+                                        <li><a class="dropdown-item" href="login-register.html">Login | Register</a></li>
                                     </ul>
                                 </li>
                                 <li class="d-none d-md-block">
@@ -108,23 +108,20 @@
                         <div class="main-menu">
                             <nav class="main-nav">
                                 <ul>
-                                    <li class="drop-holder">
-                                        <a href="/">Home</a>
+                                    <li>
+                                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                     </li>
                                     <li>
-                                        <a  asp-controller="Home" asp-action="About">Về chúng tôi</></a>
+                                        <a asp-area="" asp-controller="Home" asp-action="About">About</a>
                                     </li>
                                     <li>
-                                        <a asp-controller="Product" asp-action="Index">Shop</a>
+                                        <a asp-area="" asp-controller="Product" asp-action="Index">Shop</a>
                                     </li>
                                     <li>
-                                        <a asp-controller="Blog" asp-action="Index">Hướng dẫn mua hàng</a>
+                                        <a asp-area="" asp-controller="Blog" asp-action="Index">Blog</a>
                                     </li>
                                     <li>
-                                        <a asp-controller="Blog" asp-action="Index">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a asp-controller="Home" asp-action="Contact">Liên Hệ</a>
+                                        <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -183,253 +180,28 @@
                 <div class="offcanvas-menu_area">
                     <nav class="offcanvas-navigation">
                         <ul class="mobile-menu">
-                            <li class="menu-item-has-children">
-                                <a href="#">
-                                    <span class="mm-text">
-                                        Home
-                                        <i class="pe-7s-angle-down"></i>
-                                    </span>
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="Index">
+                                    <span class="mm-text">Home</span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="index.html">
-                                            <span class="mm-text">Home One</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="index-2.html">
-                                            <span class="mm-text">Home Two</span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                             <li>
-                                <a href="about.html">
+                                <a asp-area="" asp-controller="Home" asp-action="About">
                                     <span class="mm-text">About Us</span>
                                 </a>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">
-                                    <span class="mm-text">
-                                        Shop
-                                        <i class="pe-7s-angle-down"></i>
-                                    </span>
+                            <li>
+                                <a asp-area="" asp-controller="Product" asp-action="Index">
+                                    <span class="mm-text">Shop</span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item-has-children">
-                                        <a href="#">
-                                            <span class="mm-text">
-                                                Shop Layout
-                                                <i class="pe-7s-angle-down"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href="shop.html">
-                                                    <span class="mm-text">Shop Default</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-leftsidebar.html">
-                                                    <span class="mm-text">Shop Left Sidebar</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-rightsidebar.html">
-                                                    <span class="mm-text">Shop Right Sidebar</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-list-fullwidth.html">
-                                                    <span class="mm-text">Shop List Fullwidth</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-list-left-sidebar.html">
-                                                    <span class="mm-text">Shop List Left Sidebar</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-list-right-sidebar.html">
-                                                    <span class="mm-text">Shop List Right Sidebar</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">
-                                            <span class="mm-text">
-                                                Product Style
-                                                <i class="pe-7s-angle-down"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href="single-product.html">
-                                                    <span class="mm-text">Single Product Default</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="single-product-group.html">
-                                                    <span class="mm-text">Single Product Group</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="single-product-variable.html">
-                                                    <span class="mm-text">Single Product Variable</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="single-product-sale.html">
-                                                    <span class="mm-text">Single Product Sale</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="single-product-sticky.html">
-                                                    <span class="mm-text">Single Product Sticky</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="single-product-affiliate.html">
-                                                    <span class="mm-text">Single Product Affiliate</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">
-                                            <span class="mm-text">
-                                                Product Related
-                                                <i class="pe-7s-angle-down"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href="my-account.html">
-                                                    <span class="mm-text">My Account</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="login-register.html">
-                                                    <span class="mm-text">Login | Register</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="cart.html">
-                                                    <span class="mm-text">Shopping Cart</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <span class="mm-text">Wishlist</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="compare.html">
-                                                    <span class="mm-text">Compare</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="checkout.html">
-                                                    <span class="mm-text">Checkout</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">
-                                    <span class="mm-text">
-                                        Pages
-                                        <i class="pe-7s-angle-down"></i>
-                                    </span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="faq.html">
-                                            <span class="mm-text">Frequently Questions</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="404.html">
-                                            <span class="mm-text">Error 404</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">
-                                    <span class="mm-text">
-                                        Blog
-                                        <i class="pe-7s-angle-down"></i>
-                                    </span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item-has-children">
-                                        <a href="#">
-                                            <span class="mm-text">
-                                                Blog Holder
-                                                <i class="pe-7s-angle-down"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href="blog.html">
-                                                    <span class="mm-text">Blog Default</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-left-sidebar.html">
-                                                    <span class="mm-text">Blog Left Sidebar</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-right-sidebar.html">
-                                                    <span class="mm-text">Blog Right Sidebar</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-list-left-sidebar.html">
-                                                    <span class="mm-text">Blog List Left Sidebar</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-list-right-sidebar.html">
-                                                    <span class="mm-text">Blog List Right Sidebar</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">
-                                            <span class="mm-text">
-                                                Blog Detail Holder
-                                                <i class="pe-7s-angle-down"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href="blog-detail.html">
-                                                    <span class="mm-text">Blog Detail Default</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-detail-left-sidebar.html">
-                                                    <span class="mm-text">Blog Detail Left Sidebar</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-detail-right-sidebar.html">
-                                                    <span class="mm-text">Blog Detail Right Sidebar</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </li>
                             <li>
-                                <a href="contact.html">
+                                <a asp-area="" asp-controller="Blog" asp-action="Index">
+                                    <span class="mm-text">Blog</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="Contact">
                                     <span class="mm-text">Contact</span>
                                 </a>
                             </li>
