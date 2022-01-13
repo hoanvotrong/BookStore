@@ -46,12 +46,11 @@ insert into [dbo].[Attributes] values ('Attribute Name 5');
 
 -- Categories
 insert into [dbo].[Categories] values ('education', 'education category', NULL, 1, NULL, 1, NULL, 'education', NULL, NULL, NULL, NULL, NULL);
-insert into [dbo].[Categories] values ('textbooks', 'textbooks', 1 , 2, NULL, 1, NULL, 'textbooks', NULL, NULL, NULL, NULL, NULL);
-insert into [dbo].[Categories] values ('workbook', 'workbook', 1 , 2, NULL, 1, NULL, 'workbook', NULL, NULL, NULL, NULL, NULL);
+insert into [dbo].[Categories] values ('textbooks', 'textbooks', NULL , 1, NULL, 1, NULL, 'textbooks', NULL, NULL, NULL, NULL, NULL);
+insert into [dbo].[Categories] values ('comic', 'comic', NULL , 1, NULL, 1, NULL, 'comic', NULL, NULL, NULL, NULL, NULL);
 
-insert into [dbo].[Categories] values ('literature', 'literature category', NULL, 1, NULL, 1, NULL, 'literature', NULL, NULL, NULL, NULL, NULL);
-insert into [dbo].[Categories] values ('novel', 'novel', 4 , 2, NULL, 1, NULL, 'novel', NULL, NULL, NULL, NULL, NULL);
-insert into [dbo].[Categories] values ('short story', 'short story', 4 , 2, NULL, 1, NULL, 'short story', NULL, NULL, NULL, NULL, NULL);
+insert into [dbo].[Categories] values ('economic book', 'economic book', NULL, 1, NULL, 1, NULL, 'economic book', NULL, NULL, NULL, NULL, NULL);
+insert into [dbo].[Categories] values ('IT book', 'IT book', NULL , 1, NULL, 1, NULL, 'IT book', NULL, NULL, NULL, NULL, NULL);
 
 -- Products
 insert into [dbo].[Products] values ('Tieng Viet lop 1 tap 1','Sach giao khoa tieng viet lop 1 tap 1', NULL , 2, 2000, 0, NULL, NULL, '2021-12-12', '2022-01-13', 1, 0, 1, NULL, 'Tieng Viet lop 1 tap 1', NULL, NULL, NULL, NULL);
