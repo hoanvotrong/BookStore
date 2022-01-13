@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BookStore.Models;
+using PagedList.Core;
 
 namespace BookStore.Areas.Admin.Controllers
 {
@@ -24,11 +25,11 @@ namespace BookStore.Areas.Admin.Controllers
         {
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = 20;
-            var lsCustomers = _context.Customers
+            var lsProducts = _context.Products
                 .AsNoTracking()
-                .Include(x => x.Location)
-                .OrderByDescending(x => x.CreateDate);
-            PagedList<Customer> models = new PagedList<Customer>(lsCustomers, pageNumber, pageSize);
+                .Include(x => x.Cat)
+                .OrderByDescending(x => x.ProductId);
+            PagedList<Product> models = new PagedList<Product>(lsProducts, pageNumber, pageSize);
             ViewBag.CurrentPage = pageNumber;
             return View(models);
         }

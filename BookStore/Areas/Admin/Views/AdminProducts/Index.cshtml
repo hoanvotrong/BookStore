@@ -1,144 +1,316 @@
-﻿@model IEnumerable<BookStore.Models.Product>
+﻿
+@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<BookStore.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh sách sản phẩm" + CurrentPage;
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="main-content">
+    <div class="page-header">
+        <h2 class="header-title">Orders List</h2>
+        <div class="header-sub-title">
+            <nav class="breadcrumb breadcrumb-dash">
+                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+                <span class="breadcrumb-item active">Danh sách khách hàng : page @CurrentPage </span>
+            </nav>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row m-b-30">
+                <div class="col-lg-8">
+                    <div class="d-md-flex">
+                        <div class="m-b-10 m-r-15">
+                            <select class="custom-select" style="min-width: 180px;">
+                                <option selected>Catergory</option>
+                                <option value="all">All</option>
+                                <option value="homeDeco">Home Decoration</option>
+                                <option value="eletronic">Eletronic</option>
+                                <option value="jewellery">Jewellery</option>
+                            </select>
+                        </div>
+                        <div class="m-b-10">
+                            <select class="custom-select" style="min-width: 180px;">
+                                <option selected>Status</option>
+                                <option value="all">All</option>
+                                <option value="inStock">In Stock </option>
+                                <option value="outOfStock">Out of Stock</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-right">
+                    <button asp-action="Create" class="btn btn-primary">
+                        <i class="anticon anticon-plus-circle m-r-5"></i>
+                        <span>Add Product</span>
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover e-commerce-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <div class="checkbox">
+                                    <input id="checkAll" type="checkbox">
+                                    <label for="checkAll" class="m-b-0"></label>
+                                </div>
+                            </th>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock Left</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="checkbox">
+                                    <input id="check-item-1" type="checkbox">
+                                    <label for="check-item-1" class="m-b-0"></label>
+                                </div>
+                            </td>
+                            <td>
+                                #31
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid rounded" src="assets/images/others/thumb-9.jpg" style="max-width: 60px" alt="">
+                                    <h6 class="m-b-0 m-l-10">Gray Sofa</h6>
+                                </div>
+                            </td>
+                            <td>Home Decoration</td>
+                            <td>$912.00</td>
+                            <td>20</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>In Stock</div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <i class="anticon anticon-edit"></i>
+                                </button>
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <i class="anticon anticon-delete"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="checkbox">
+                                    <input id="check-item-2" type="checkbox">
+                                    <label for="check-item-2" class="m-b-0"></label>
+                                </div>
+                            </td>
+                            <td>
+                                #32
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid rounded" src="assets/images/others/thumb-10.jpg" style="max-width: 60px" alt="">
+                                    <h6 class="m-b-0 m-l-10">Beat Headphone</h6>
+                                </div>
+                            </td>
+                            <td>Eletronic</td>
+                            <td>$137.00</td>
+                            <td>56</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>In Stock</div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <i class="anticon anticon-edit"></i>
+                                </button>
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <i class="anticon anticon-delete"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="checkbox">
+                                    <input id="check-item-3" type="checkbox">
+                                    <label for="check-item-3" class="m-b-0"></label>
+                                </div>
+                            </td>
+                            <td>
+                                #33
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid rounded" src="assets/images/others/thumb-11.jpg" style="max-width: 60px" alt="">
+                                    <h6 class="m-b-0 m-l-10">Wooden Rhino</h6>
+                                </div>
+                            </td>
+                            <td>Home Decoration</td>
+                            <td>$912.00</td>
+                            <td>12</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>In Stock</div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <i class="anticon anticon-edit"></i>
+                                </button>
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <i class="anticon anticon-delete"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="checkbox">
+                                    <input id="check-item-4" type="checkbox">
+                                    <label for="check-item-4" class="m-b-0"></label>
+                                </div>
+                            </td>
+                            <td>
+                                #34
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid rounded" src="assets/images/others/thumb-12.jpg" style="max-width: 60px" alt="">
+                                    <h6 class="m-b-0 m-l-10">Red Chair</h6>
+                                </div>
+                            </td>
+                            <td>Home Decoration</td>
+                            <td>$128.00</td>
+                            <td>0</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-danger badge-dot m-r-10"></div>
+                                    <div>Out of Stock</div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <i class="anticon anticon-edit"></i>
+                                </button>
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <i class="anticon anticon-delete"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="checkbox">
+                                    <input id="check-item-5" type="checkbox">
+                                    <label for="check-item-5" class="m-b-0"></label>
+                                </div>
+                            </td>
+                            <td>
+                                #35
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid rounded" src="assets/images/others/thumb-13.jpg" style="max-width: 60px" alt="">
+                                    <h6 class="m-b-0 m-l-10">Wristband</h6>
+                                </div>
+                            </td>
+                            <td>Eletronic</td>
+                            <td>$776.00</td>
+                            <td>0</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-danger badge-dot m-r-10"></div>
+                                    <div>Out of Stock</div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <i class="anticon anticon-edit"></i>
+                                </button>
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <i class="anticon anticon-delete"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="checkbox">
+                                    <input id="check-item-6" type="checkbox">
+                                    <label for="check-item-6" class="m-b-0"></label>
+                                </div>
+                            </td>
+                            <td>
+                                #36
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid rounded" src="assets/images/others/thumb-14.jpg" style="max-width: 60px" alt="">
+                                    <h6 class="m-b-0 m-l-10">Charging Cable</h6>
+                                </div>
+                            </td>
+                            <td>Eletronic</td>
+                            <td>$119.00</td>
+                            <td>37</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>In Stock</div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <i class="anticon anticon-edit"></i>
+                                </button>
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <i class="anticon anticon-delete"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="checkbox">
+                                    <input id="check-item-7" type="checkbox">
+                                    <label for="check-item-7" class="m-b-0"></label>
+                                </div>
+                            </td>
+                            <td>
+                                #37
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid rounded" src="assets/images/others/thumb-15.jpg" style="max-width: 60px" alt="">
+                                    <h6 class="m-b-0 m-l-10">Three Legs</h6>
+                                </div>
+                            </td>
+                            <td>Home Decoration</td>
+                            <td>$199.00</td>
+                            <td>17</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>In Stock</div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <i class="anticon anticon-edit"></i>
+                                </button>
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <i class="anticon anticon-delete"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShortDesc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Discount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Thumb)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Video)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateCreated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateModified)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BestSellers)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeFlag)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Active)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tags)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Alias)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MetaDesc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MetaKey)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UnitsInStock)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cat)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShortDesc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Discount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thumb)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Video)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateModified)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BestSellers)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomeFlag)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tags)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Alias)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MetaDesc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MetaKey)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitsInStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cat.CatId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
