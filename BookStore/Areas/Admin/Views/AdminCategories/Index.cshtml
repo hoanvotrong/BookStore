@@ -1,12 +1,10 @@
-﻿
-@using PagedList.Core.Mvc
-@model PagedList.Core.IPagedList<BookStore.Models.Product>
+﻿@model IEnumerable<BookStore.Models.Category>
 
 @{
-    int CurrentPage = ViewBag.CurrentPage;
-    ViewData["Title"] = "Danh sách sản phẩm" + CurrentPage;
+    ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+
 
 <div class="main-content">
     <div class="page-header">
@@ -14,7 +12,7 @@
         <div class="header-sub-title">
             <nav class="breadcrumb breadcrumb-dash">
                 <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
-                <span class="breadcrumb-item active">Danh sách khách hàng : page @CurrentPage </span>
+                <span class="breadcrumb-item active">Danh sách danh mục  </span>
             </nav>
         </div>
     </div>
@@ -28,13 +26,13 @@
                                 <option selected>Chọn Danh Mục</option>
                                 <option value="all">All</option>
                             </select>
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="col-lg-4 text-right">
-                    <a class="btn btn-primary" asp-controller="AdminProducts" asp-action="Create"> <i class="anticon anticon-plus-circle m-r-5"></i>Add Product </a>
+                    <a class="btn btn-primary" asp-controller="AdminCategories" asp-action="Create"> <i class="anticon anticon-plus-circle m-r-5"></i>Add Product </a>
                 </div>
             </div>
             <div class="table-responsive">
@@ -42,10 +40,8 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Danh mục</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
+                            <th>Tên danh mục</th>
+                            <th>Mô tả</th>
                             <th>Trạng thái</th>
                             <th></th>
                         </tr>
@@ -57,45 +53,42 @@
                             {
                                 <tr>
                                     <td>
-                                        @item.ProductId
+                                        @item.CatId
                                     </td>
-                                    <td>@item.ProductName</td>
-                                    <td>@item.Cat.CatName</td>
-                                    <td>@item.Price.Value.ToString("#,##0") VNĐ</td>
-                                    <td>@item.UnitsInStock</td>
+                                    <td>@item.CatName</td>
+                                    <td>@item.Description</td>
+
+                                    <td>@item.Published</td>
                                     <td>
-                                        @if (item.UnitsInStock > 0)
+                                        @if (item.Published)
                                         {
                                             <div class="d-flex align-items-center">
                                                 <div class="badge badge-success badge-dot m-r-10"></div>
-                                                <div>In Stock</div>
+                                                <div>active</div>
                                             </div>
                                         }
                                         else
                                         {
                                             <div class="d-flex align-items-center">
                                                 <div class="badge badge-danger badge-dot m-r-10"></div>
-                                                <div>Out Stock</div>
+                                                <div>block</div>
                                             </div>
                                         }
                                     </td>
 
                                     <td class="text-right">
-                                        <a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Details" asp-route-id="@item.ProductId">View</a>
-                                        <a class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
-                                        <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                                        <a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Details" asp-route-id="@item.CatId">View</a>
+                                        <a class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.CatId">Edit</a>
+                                        <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Delete" asp-route-id="@item.CatId">Delete</a>
                                     </td>
                                 </tr>
                             }
                         }
                     </tbody>
                 </table>
-                <div aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <pager class="pager-container" list="@Model" asp-area="Admin" asp-controller="AdminProducts" asp-action="Index"/>
-                    </ul>
-                </div>
+                
             </div>
         </div>
     </div>
 </div>
+

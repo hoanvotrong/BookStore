@@ -31,6 +31,8 @@ namespace BookStore.Areas.Admin.Controllers
                 .OrderByDescending(x => x.ProductId);
             PagedList<Product> models = new PagedList<Product>(lsProducts, pageNumber, pageSize);
             ViewBag.CurrentPage = pageNumber;
+
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName");
             return View(models);
         }
 
@@ -56,7 +58,7 @@ namespace BookStore.Areas.Admin.Controllers
         // GET: Admin/AdminProducts/Create
         public IActionResult Create()
         {
-            ViewData["CatId"] = new SelectList(_context.Categories, "CatId", "CatId");
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName");
             return View();
         }
 
@@ -73,7 +75,7 @@ namespace BookStore.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CatId"] = new SelectList(_context.Categories, "CatId", "CatId", product.CatId);
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName", product.CatId);
             return View(product);
         }
 
@@ -90,7 +92,7 @@ namespace BookStore.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["CatId"] = new SelectList(_context.Categories, "CatId", "CatId", product.CatId);
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName", product.CatId);
             return View(product);
         }
 
@@ -126,7 +128,7 @@ namespace BookStore.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CatId"] = new SelectList(_context.Categories, "CatId", "CatId", product.CatId);
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName", product.CatId);
             return View(product);
         }
 
